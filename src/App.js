@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
-function App() {
+import PublicRoutes from './routes/PublicRoutes'
+import LanguageSelectionComponent from './components/LanguageSelectionComponent';
+
+const App = () => {
+
+  const items = ["en-US", "en-GB", "pt-BR"]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Redirect path='/' to='/date' exact />
+        <PublicRoutes path='/date' component={LanguageSelectionComponent} items={items} exact />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
